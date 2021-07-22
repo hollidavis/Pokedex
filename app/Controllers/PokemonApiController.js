@@ -4,7 +4,7 @@ import { pokemonApiService } from "../Services/PokemonApiService.js";
 function _drawAll() {
   const pokemon = ProxyState.allApiPokemon
   let template = ''
-  pokemon.forEach(p => template += `<li class="action" onclick="app.pokemonApiController.getPokemon('${p.id}')">${p.name}</li>`)
+  pokemon.forEach(p => template += `<li class="action" onclick="app.pokemonApiController.getPokemon('${p.name}')">${p.name}</li>`)
   document.getElementById('api-pokemon').innerHTML = template
 }
 
@@ -23,9 +23,9 @@ export default class PokemonApiController {
     }
   }
 
-  async getSpell(id) {
+  async getPokemon(name) {
     try {
-      await pokemonApiService.getPokemon(id)
+      await pokemonApiService.getPokemon(name)
     } catch (error) {
       console.error(error)
     }

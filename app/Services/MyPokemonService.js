@@ -17,6 +17,21 @@ class MyPokemonService {
     ProxyState.myPokemon = [...ProxyState.myPokemon, newPokemon]
     ProxyState.activePokemon = newPokemon
   }
+
+  setPokemon(id) {
+    const pokemon = ProxyState.myPokemon.find(p => p.id === id)
+    if (!pokemon) {
+      throw new Error("invalid pokemon id")
+    }
+    ProxyState.activePokemon = pokemon
+    ProxyState.myPokemon = ProxyState.myPokemon
+  }
+
+  async removePokemon() {
+    const res = await sandbox.delete(ProxyState.activePokemon.id)
+    ProxyState.myPokemon = ProxyState.myPokemon.filter(p => p.id != ProxyState.activePokemon.id)
+    ProxyState.activePokemon = null
+  }
 }
 
 export const myPokemonService = new MyPokemonService();

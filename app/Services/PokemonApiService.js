@@ -3,8 +3,8 @@ import Pokemon from "../Models/Pokemon.js"
 import { pokemonApi } from "./AxiosService.js"
 
 class PokemonApiService {
-  async getPokemon(id) {
-    let res = await pokemonApi.get(id)
+  async getPokemon(name) {
+    let res = await pokemonApi.get(name)
     console.log(res.data)
     ProxyState.activePokemon = new Pokemon(res.data)
   }
